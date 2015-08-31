@@ -115,6 +115,16 @@ function MultipartData:get(name)
   return self._data.data[self._data.indexes[name]]
 end
 
+function MultipartData:all() 
+  local results = {}
+  for _, v in ipairs(self._data.data) do
+    if v.value then
+      results[v.name] = v.value
+    end
+  end
+  return results
+end
+
 function MultipartData:set_simple(name, value)
   self._data.data[table_size(self._data.indexes) + 1] = {
     name = name,
